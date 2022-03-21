@@ -1,4 +1,2 @@
-export const TOGGLE = 'TOGGLE'
-export const GET_PETS = 'GET_PETS'
-export const UPDATE_MY_NAME = 'UPDATE_MY_NAME'
-
+export const UPDATE_LOGGED_IN_STATUS = 'UPDATE_LOGGED_IN_STATUS';
+export const USER_SEARCHED_WORD = 'USER_SEARCHED_WORD';

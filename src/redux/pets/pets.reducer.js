@@ -1,38 +1,33 @@
-import { TOGGLE, UPDATE_MY_NAME } from "../actions";
+import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD } from "../actions";
 
 
 const INITIAL_STATE = {
-    isToggle: false,
-    myName: 'Mayank'
+    isLoggedIn: false,
+    searchedWord: ""
 }
 
 
 const petsReducer = (state = INITIAL_STATE, actions) => {
 
     switch (actions.type) {
-        case TOGGLE: {
-            // return new state
-            return {
-                ...state,
-                isToggle: !state.isToggle
-            }
-            break;
-        }
 
-        case UPDATE_MY_NAME: {
+        case UPDATE_LOGGED_IN_STATUS: {
             return {
-                ...state, myName: actions.payload
-
+                ...state, isLoggedIn: actions.payload
             }
         }
+
+        case USER_SEARCHED_WORD: {
+            return {
+                ...state, searchedWord: actions.payload
+            }
+        }
+
         default:
             return state
             break;
     }
 }
-
-
-
 
 export default petsReducer;
 

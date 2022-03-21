@@ -1,19 +1,14 @@
-import { TOGGLE, UPDATE_MY_NAME } from "../actions";
+import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD } from "../actions";
 
-// export const getPets = () => ({
-//     type: GET_PETS
-// })
-
-export const toggle = () => ({
-    type: TOGGLE
-})
-
-export const updateMyName = (payload) => ({
-    type: UPDATE_MY_NAME,
+export const updateLoggedInStatus = (payload) => ({
+    type: UPDATE_LOGGED_IN_STATUS,
     payload: payload
 })
 
-
+export const userSearchedWord = (payload) => ({
+    type: USER_SEARCHED_WORD,
+    payload: payload
+})
 
 
 

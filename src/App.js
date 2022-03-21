@@ -1,28 +1,29 @@
-import { Button } from '@mui/material';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import DummyUpdateMyName from './components/dummyUpdateMyName';
-import { toggle } from './redux/pets/pets.action';
+import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import PetProfile from './pages/PetProfile';
 
 
 function App(props) {
-  console.log("Props:-", props);
 
   return (
-    <div className="App">
-      {props.isToggle.toString()}
-      <Button onClick={() => props.dispatch(toggle())}>Toogle</Button>
-
-      <DummyUpdateMyName />
+    <div>
+      <NavBar />
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/petprofile/:id' element={<PetProfile />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  console.log("State in APp.js:-", state.pets);
-  return {
-    isToggle: state.pets.isToggle
-  }
+  return {}
 }
 
 
