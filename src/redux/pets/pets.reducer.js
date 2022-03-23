@@ -1,9 +1,10 @@
-import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD } from "../actions";
+import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD, USER_FILTERED_CHECKED } from "../actions";
 
 
 const INITIAL_STATE = {
     isLoggedIn: false,
-    searchedWord: ""
+    searchedWord: "",
+    filteredChecked: []
 }
 
 
@@ -20,6 +21,12 @@ const petsReducer = (state = INITIAL_STATE, actions) => {
         case USER_SEARCHED_WORD: {
             return {
                 ...state, searchedWord: actions.payload
+            }
+        }
+
+        case USER_FILTERED_CHECKED: {
+            return {
+                filteredChecked: actions.payload
             }
         }
 

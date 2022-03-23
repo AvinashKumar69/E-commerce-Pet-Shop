@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import FeaturesHomeCard from "../components/FeaturesHomeCard";
+import Filter from "../components/Filter";
 import PetCards from "../components/PetCard";
 import PetsData from "../DataHelpers/PetsData.json";
 
@@ -18,14 +19,14 @@ import PetsData from "../DataHelpers/PetsData.json";
 
 
 const Home = (props) => {
-
-
     const [petsData, setPetsData] = useState(PetsData)
 
-
+    console.log("Props in Home:-",props);
+    const {userFilteredChecked} = props
+ 
     useEffect(() => {
         if (props.userSearchedWord) {
-            console.log("home Props earched changed Called:-", props.userSearchedWord);
+            console.log("home Props searched changed Called:-", props.userSearchedWord);
             const searchedArray = PetsData.filter((pet) => {
                 console.log("home Props earched changed Called:- filtering", pet.name.toLowerCase(), props.userSearchedWord.toLowerCase());
                 if (pet.name.toLowerCase().includes(props.userSearchedWord.toLowerCase()))
@@ -37,8 +38,26 @@ const Home = (props) => {
         }
     }, [props.userSearchedWord])
 
+    useEffect(() => {
+        console.log("userFilteredChecked changed:-",userFilteredChecked);
+        if (userFilteredChecked.length > 0) {
+            const userFilteredArray = PetsData.filter((pet) => {
+                console.log("filter check:-",userFilteredChecked.includes(pet.name));
+                if (userFilteredChecked.includes(pet.name)){
+                    return true
+                }    
+            })
+            setPetsData(userFilteredArray)
+        } else {
+            setPetsData(PetsData)
+        }
+    }, [userFilteredChecked])
+
     return (
         <>
+            <div>
+                <Filter />
+            </div>
             <div>
                 <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
             </div>
@@ -67,7 +86,8 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
     console.log("home state called:-", state);
     return {
-        userSearchedWord: state.pets.searchedWord
+        userSearchedWord: state.pets.searchedWord,
+        userFilteredChecked: state.pets.filteredChecked
     }
 }
 
