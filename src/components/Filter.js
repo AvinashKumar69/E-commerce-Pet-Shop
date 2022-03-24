@@ -1,43 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import React from "react";
 import { connect } from "react-redux";
-import { userFilteredChecked } from "../redux/pets/pets.action";
-import FilteredItem from "./FilteredItem";
+import FilterSection from "./FilterSection";
 
-const breedArray = ['Spot', 'Saurabh', 'Tom', 'Haray', 'Mayank']
+const filters = {
+    breeds: ['avinash1', 'avinash2', 'avinash3', 'avinash4'],
+    colors: ['red', 'blue', 'green']
+}
 
-const Filter = (props) => {
-
-    const [filterChecked, setFilterChecked] = useState([])
-
-    // function handleFilterChange(e) {
-    //     const itemsChecked = e.target.value
-    //     console.log('itemsChecked logged;-', itemsChecked,e.target);
-    //     // setFilterChecked([
-    //     //     ...filterChecked, itemsChecked
-    //     // ])
-    //     // console.log('filterChecked logged;-', filterChecked);
-    // }
-
-    // useEffect(() => {
-    //     props.dispatch(userFilteredChecked(filterChecked))
-    // }, [filterChecked])
+const Filter = () => {
 
     return (
         <div>
-            <Form>
-                {
-                    breedArray.map((type) => {
-                        return (
-                            <FilteredItem
-                                type={type}
-                                // handleFilterChange={handleFilterChange}
-                                key={`default-${type}`}
+
+            {
+                Object.keys(filters).map((filterkey) => {
+                    return (
+                        <div key={filterkey}>
+                            <h4>{filterkey}</h4>
+                            <FilterSection
+                                name={filterkey}
+                                value={filters[filterkey]}
                             />
-                        )
-                    })
-                }
-            </Form>
+                        </div>
+                    )
+                })
+            }
+
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { signInWithGoogle } from "../Firebase-config";
 import SearchBar from "./SearchBar";
 
@@ -12,7 +12,7 @@ const NavBar = (props) => {
   return (
     <Navbar sticky="top" bg="primary" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">PETSY</Navbar.Brand>
+        <NavLink to="/">PETSY</NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,7 +20,7 @@ const NavBar = (props) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
             {
               !props.isLoggedIn ?
                 <Nav.Link

@@ -21,9 +21,9 @@ import PetsData from "../DataHelpers/PetsData.json";
 const Home = (props) => {
     const [petsData, setPetsData] = useState(PetsData)
 
-    console.log("Props in Home:-",props);
-    const {userFilteredChecked} = props
- 
+    console.log("Props in Home:-", props);
+    const { selectedFilters } = props
+
     useEffect(() => {
         if (props.userSearchedWord) {
             console.log("home Props searched changed Called:-", props.userSearchedWord);
@@ -38,42 +38,54 @@ const Home = (props) => {
         }
     }, [props.userSearchedWord])
 
-    useEffect(() => {
-        console.log("userFilteredChecked changed:-",userFilteredChecked);
-        if (userFilteredChecked.length > 0) {
-            const userFilteredArray = PetsData.filter((pet) => {
-                console.log("filter check:-",userFilteredChecked.includes(pet.name));
-                if (userFilteredChecked.includes(pet.name)){
-                    return true
-                }    
+    const filterPets = (name,value,data) => {
+            console.log("filter present:-", name,value);
+            return data.filter((pet) => {
+                if (value.includes(pet[name])) return true
             })
-            setPetsData(userFilteredArray)
-        } else {
-            setPetsData(PetsData)
-        }
-    }, [userFilteredChecked])
+    }
+
+   
+
+    useEffect(() => {
+        let data = [...PetsData]
+        console.log("selectedFilters changed:-", selectedFilters);
+        Object.keys(selectedFilters).map((category)=>{
+            if(selectedFilters[category].length > 0){
+               data =  filterPets(category,selectedFilters[category],data)
+            }
+        })
+        console.log("Filtered data:-",data);
+        setPetsData(data)
+        // call  function which will retun filtered data
+
+    }, [selectedFilters])
 
     return (
         <>
-            <div>
-                <Filter />
-            </div>
-            <div>
-                <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
-            </div>
-            <Container>
-                <Row>
-                    {
-                        petsData.map((petCardData) => {
-                            return (
-                                <Col key={petCardData.id} className="mt-4">
-                                    <PetCards petCardData={petCardData} />
-                                </Col>
-                            )
-                        })
-                    }
-                </Row>
-            </Container>
+            <Row className="home-container">
+                <Col md='2' className="filter-container">
+                    <Filter />
+                </Col>
+                <Col md='10' className="product-container">
+                    <div>
+                        <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
+                    </div>
+                    <Container>
+                        <Row>
+                            {
+                                petsData.map((petCardData) => {
+                                    return (
+                                        <Col key={petCardData.id} className="mt-4">
+                                            <PetCards petCardData={petCardData} />
+                                        </Col>
+                                    )
+                                })
+                            }
+                        </Row>
+                    </Container>
+                </Col>
+            </Row>
             <Container>
                 <Col className="mt-4">
                     <FeaturesHomeCard />
@@ -87,7 +99,9 @@ const mapStateToProps = (state) => {
     console.log("home state called:-", state);
     return {
         userSearchedWord: state.pets.searchedWord,
-        userFilteredChecked: state.pets.filteredChecked
+        filteredChecked: state.pets.filteredChecked,
+        currentSelectedFilter: state.pets.currentSelectedFilter,
+        selectedFilters: state.pets.selectedFilters,
     }
 }
 

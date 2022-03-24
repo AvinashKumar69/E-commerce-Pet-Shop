@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { userFilteredChecked } from "../redux/pets/pets.action";
+import { setSelectedFilter, userFilteredChecked } from "../redux/pets/pets.action";
 
 const FilteredItem = (props) => {
     console.log('all Props called:-', props);
-    const { type, handleFilterChange } = props
+    const { value, handleFilterChange,category } = props
 
     const [isChecked, setIsChecked] = useState(false)
 
@@ -15,20 +15,28 @@ const FilteredItem = (props) => {
     }
 
     useEffect(() => {
-        console.log('useeffect logged:-', type, isChecked);
-        props.dispatch(userFilteredChecked({
-            name: type,
-            isChecked: isChecked
+        console.log('useeffect logged:-', value, isChecked);
+        // props.dispatch(userFilteredChecked({
+        //     name: value,
+        //     isChecked: isChecked
+        // }))
+        // props.handleSetFilterSection({
+        //     name: value,
+        //     isSelected: isChecked
+        // })
+        props.dispatch(setSelectedFilter({
+            category,value,isSelected: isChecked
         }))
+
     }, [isChecked])
 
     return (
         <div className="mb-3">
             <Form.Check
                 type='checkbox'
-                id={`default-${type}`}
-                label={`${type}`}
-                name={`${type}`}
+                id={`default-${value}`}
+                label={`${value}`}
+                name={`${value}`}
                 value={isChecked}
                 onChange={handleChange}
             />

@@ -1,4 +1,4 @@
-import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD, USER_FILTERED_CHECKED } from "../actions";
+import { SET_CURRENT_SELECTED_FILTER, SET_SELECTED_FILTER, UPDATE_LOGGED_IN_STATUS, USER_FILTERED_CHECKED, USER_SEARCHED_WORD } from "../actions";
 
 export const updateLoggedInStatus = (payload) => ({
     type: UPDATE_LOGGED_IN_STATUS,
@@ -17,6 +17,21 @@ export const userFilteredChecked = (payload) => {
         payload: payload
     }
 }
+
+export const currentSelectedFilter = (payload) => ({
+    type: SET_CURRENT_SELECTED_FILTER,
+    payload: payload
+})
+
+export const setSelectedFilter = (payload) => {
+   console.log("setSelectedFilter payload:-",payload);
+   return {
+    type: SET_SELECTED_FILTER,
+    payload: payload
+   }
+}
+
+
 
 
 

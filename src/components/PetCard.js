@@ -19,6 +19,12 @@ const PetCards = (props) => {
             <Card.Body style={{ textAlign: "center" }}>
                 <Card.Title>{petCardData.name}</Card.Title>
                 <Card.Text>
+                    Breed: {petCardData.breeds}
+                </Card.Text>
+                <Card.Text>
+                    Color: {petCardData.colors}
+                </Card.Text>
+                <Card.Text>
                     {petCardData.description}
                 </Card.Text>
                 <Button variant="primary" onClick={handlePetProfileClick}>Pet Profile</Button>
