@@ -12,8 +12,8 @@ const SearchBar = (props) => {
     }
 
     return (
-        <form className="d-flex">
-            <input className="form-control me-2"
+        <form className="d-flex justify-content-center">
+            <input  className="form-control me-2 search-input"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"

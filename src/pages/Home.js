@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import FeaturesHomeCard from "../components/FeaturesHomeCard";
 import Filter from "../components/Filter";
 import PetCards from "../components/PetCard";
+import SearchBar from "../components/SearchBar";
 import PetsData from "../DataHelpers/PetsData.json";
 
 // Responcibility-->
@@ -27,20 +28,6 @@ const Home = (props) => {
     console.log("Props in Home:-", props);
     const { selectedFilters, userSearchedWord } = props
 
-    // useEffect(() => {
-    //     if (userSearchedWord) {
-    //         console.log("home Props searched changed Called:-", userSearchedWord);
-    //         const searchedArray = PetsData.filter((pet) => {
-    //             console.log("home Props earched changed Called:- filtering", pet.name.toLowerCase(), userSearchedWord.toLowerCase());
-    //             if (pet.name.toLowerCase().includes(userSearchedWord.toLowerCase()))
-    //                 return true
-    //         })
-    //         setPetsData(searchedArray)
-    //     } 
-    //     else if(!isFilterApplied(selectedFilters)) {
-    //         setPetsData(PetsData)
-    //     }
-    // }, [userSearchedWord])
 
     const filterPets = (name, value, data) => {
         console.log("filter present:-", name, value);
@@ -81,6 +68,9 @@ const Home = (props) => {
                     <Filter />
                 </Col>
                 <Col md='10'>
+                    <div className="mt-3 mb-3">
+                        <SearchBar />
+                    </div>
                     <div>
                         <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
                     </div>

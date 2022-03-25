@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PetCards = (props) => {
     const { petCardData } = props
-
+   console.log("PetCards:-",props);
     const navigate = useNavigate()
 
     function handlePetProfileClick() {
