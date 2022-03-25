@@ -1,6 +1,7 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import PetProfileBottomCard from "../components/PetProfileBottomCard";
 import PetProfileDetailsCard from "../components/PetProfileDetailsCard";
 import PetProfileImageCard from "../components/PetProfileImageCard";
 
@@ -22,14 +23,21 @@ const PetProfile = () => {
     const { petCardData } = state
 
     return (
-        <Row>
-            <Col>
-                <PetProfileImageCard petCardData={petCardData} />
-            </Col>
-            <Col>
-                <PetProfileDetailsCard petCardData={petCardData} />
-            </Col>
-        </Row>
+        <div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="mt-4 mb-4 mx-4 my-4">
+                    <PetProfileImageCard petCardData={petCardData} />
+                </div>
+                <div className="mt-4 mb-4 mx-4 my-4" >
+                    <div className="mt-1 mb-4 mx-4 my-4">
+                        <PetProfileDetailsCard petCardData={petCardData} />
+                    </div>
+                </div>
+            </div>
+            {/* <div>
+                <PetProfileBottomCard />
+            </div> */}
+        </div>
     )
 }
 

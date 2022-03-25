@@ -1,47 +1,34 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { signInWithGoogle } from "../Firebase-config";
+import { Link } from "react-router-dom";
+import Login from "./Login";
 import SearchBar from "./SearchBar";
 
-const NavBar = (props) => {
-
-  console.log("Props:-", props);
+const NavBar = () => {
 
   return (
-    <Navbar sticky="top" bg="primary" expand="lg">
-      <Container fluid>
-        <NavLink to="/">PETSY</NavLink>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <NavLink to="/">Home</NavLink>
-            {
-              !props.isLoggedIn ?
-                <Nav.Link
-                  type="button"
-                  onClick={signInWithGoogle}
-                >Log In</Nav.Link>
-                :
-                <p>Hello User!</p>
-            }
-          </Nav>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">PETSY</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to='/user/favorite'>Favorites</Link>
+            </li>
+            <li className="nav-item">
+              <Login />
+            </li>
+          </ul>
           <SearchBar />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        </div>
+      </div>
+    </nav >
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.pets.isLoggedIn,
-  }
-}
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;

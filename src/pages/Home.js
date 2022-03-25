@@ -17,57 +17,70 @@ import PetsData from "../DataHelpers/PetsData.json";
 // -FeaturesHomeCard
 // -Footer
 
+const isFilterApplied = (filters) => {
+    return Object.keys(filters).some((filterKey) => filters[filterKey].length > 0)
+}
 
 const Home = (props) => {
     const [petsData, setPetsData] = useState(PetsData)
 
     console.log("Props in Home:-", props);
-    const { selectedFilters } = props
+    const { selectedFilters, userSearchedWord } = props
 
-    useEffect(() => {
-        if (props.userSearchedWord) {
-            console.log("home Props searched changed Called:-", props.userSearchedWord);
-            const searchedArray = PetsData.filter((pet) => {
-                console.log("home Props earched changed Called:- filtering", pet.name.toLowerCase(), props.userSearchedWord.toLowerCase());
-                if (pet.name.toLowerCase().includes(props.userSearchedWord.toLowerCase()))
-                    return true
-            })
-            setPetsData(searchedArray)
-        } else {
-            setPetsData(PetsData)
-        }
-    }, [props.userSearchedWord])
+    // useEffect(() => {
+    //     if (userSearchedWord) {
+    //         console.log("home Props searched changed Called:-", userSearchedWord);
+    //         const searchedArray = PetsData.filter((pet) => {
+    //             console.log("home Props earched changed Called:- filtering", pet.name.toLowerCase(), userSearchedWord.toLowerCase());
+    //             if (pet.name.toLowerCase().includes(userSearchedWord.toLowerCase()))
+    //                 return true
+    //         })
+    //         setPetsData(searchedArray)
+    //     } 
+    //     else if(!isFilterApplied(selectedFilters)) {
+    //         setPetsData(PetsData)
+    //     }
+    // }, [userSearchedWord])
 
-    const filterPets = (name,value,data) => {
-            console.log("filter present:-", name,value);
-            return data.filter((pet) => {
-                if (value.includes(pet[name])) return true
-            })
+    const filterPets = (name, value, data) => {
+        console.log("filter present:-", name, value);
+        return data.filter((pet) => {
+            if (value.includes(pet[name])) return true
+        })
     }
-
-   
 
     useEffect(() => {
         let data = [...PetsData]
-        console.log("selectedFilters changed:-", selectedFilters);
-        Object.keys(selectedFilters).map((category)=>{
-            if(selectedFilters[category].length > 0){
-               data =  filterPets(category,selectedFilters[category],data)
-            }
-        })
-        console.log("Filtered data:-",data);
+        if (userSearchedWord) {
+            console.log("home Props searched changed Called:-", userSearchedWord);
+            const searchedArray = PetsData.filter((pet) => {
+                console.log("home Props earched changed Called:- filtering", pet.name.toLowerCase(), userSearchedWord.toLowerCase());
+                if (pet.name.toLowerCase().includes(userSearchedWord.toLowerCase()))
+                    return true
+            })
+            data = searchedArray
+        }
+        console.log("selectedFilters changed:-", isFilterApplied(selectedFilters));
+        if (isFilterApplied(selectedFilters)) {
+            Object.keys(selectedFilters).map((category) => {
+                if (selectedFilters[category].length > 0) {
+                    data = filterPets(category, selectedFilters[category], data)
+                }
+            })
+        }
+        console.log("Filtered data:-", data);
         setPetsData(data)
         // call  function which will retun filtered data
 
-    }, [selectedFilters])
+    }, [selectedFilters, userSearchedWord])
 
     return (
         <>
-            <Row className="home-container">
+            <Row>
                 <Col md='2' className="filter-container">
                     <Filter />
                 </Col>
-                <Col md='10' className="product-container">
+                <Col md='10'>
                     <div>
                         <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
                     </div>
@@ -91,6 +104,36 @@ const Home = (props) => {
                     <FeaturesHomeCard />
                 </Col>
             </Container>
+
+
+            {/* <div>
+                <div md='2' className="filter-container">
+                    <Filter />
+                </div>
+                <div>
+                    <div>
+                        <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
+                    </div>
+                    <div>
+                        <div>
+                            {
+                                petsData.map((petCardData) => {
+                                    return (
+                                        <div key={petCardData.id} className="mt-4">
+                                            <PetCards petCardData={petCardData} />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Container>
+                <Col className="mt-4">
+                    <FeaturesHomeCard />
+                </Col>
+            </Container> */}
         </>
     )
 }

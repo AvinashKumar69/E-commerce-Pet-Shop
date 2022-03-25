@@ -1,4 +1,5 @@
 import React from "react";
+import petProfileImage from "../assets/petProfileImage1.jpg";
 
 // Responcibility-->
 // 1. this will display full image of the pet after user clicks on the pet profile button in the Home page
@@ -8,10 +9,14 @@ import React from "react";
 
 const PetProfileImageCard = (props) => {
     const { petCardData } = props
+    console.log("petCardData", petCardData);
 
     return (
-        <div>
-            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*" alt="pet pofile" />
+        <div className="card" style={{ width: "25rem" }}>
+            <img src={petProfileImage} className="card-img-top" alt="..." />
+            <div className="card-body">
+                <p className="card-text text-muted">{petCardData.tags}</p>
+            </div>
         </div>
     )
 }

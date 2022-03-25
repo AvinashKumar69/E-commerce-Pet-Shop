@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
 import { userSearchedWord } from "../redux/pets/pets.action";
 
@@ -13,17 +12,16 @@ const SearchBar = (props) => {
     }
 
     return (
-        <Form className="d-flex">
-            <FormControl
+        <form className="d-flex">
+            <input className="form-control me-2"
                 type="search"
                 placeholder="Search"
-                className="me-2"
                 aria-label="Search"
                 value={searchedInput}
                 onChange={handleChangeSearchField}
             />
-            <Button variant="outline-success">Search</Button>
-        </Form>
+            {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
+        </form>
     )
 }
 
