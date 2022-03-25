@@ -6,10 +6,14 @@ import PetCards from './PetCard'
 function Favorites(props) {
     const { userId } = props
     console.log("Favorites COmponent:-", userId);
+
     const [favoritesData, setFavoritesData] = useState([])
+
     useEffect(() => {
         getUserFavorites(userId).then(data => setFavoritesData(data))
     }, [])
+
+
     return (
         <div>
             <h4>Favorites</h4>

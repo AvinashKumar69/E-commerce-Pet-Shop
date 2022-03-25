@@ -104,36 +104,6 @@ const Home = (props) => {
                     <FeaturesHomeCard />
                 </Col>
             </Container>
-
-
-            {/* <div>
-                <div md='2' className="filter-container">
-                    <Filter />
-                </div>
-                <div>
-                    <div>
-                        <h1 style={{ textAlign: "center" }}>Our Products, Choose Your Companion Now!</h1>
-                    </div>
-                    <div>
-                        <div>
-                            {
-                                petsData.map((petCardData) => {
-                                    return (
-                                        <div key={petCardData.id} className="mt-4">
-                                            <PetCards petCardData={petCardData} />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Container>
-                <Col className="mt-4">
-                    <FeaturesHomeCard />
-                </Col>
-            </Container> */}
         </>
     )
 }

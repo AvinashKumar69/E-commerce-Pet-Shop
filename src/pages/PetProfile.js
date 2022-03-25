@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import PetProfileBottomCard from "../components/PetProfileBottomCard";
 import PetProfileDetailsCard from "../components/PetProfileDetailsCard";
