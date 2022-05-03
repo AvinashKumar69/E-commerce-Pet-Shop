@@ -25,13 +25,12 @@ const PetProfileDetailsCard = (props) => {
         } catch (error) {
             setLoading(false)
         }
-
     }
 
     return (
         <div className="card border-0" style={{ width: "25rem" }}>
             <div className="card-body align-center">
-                <h5 className="card-title">Hi Human! My Name is {petCardData.name}</h5>
+                <h5 className="card-title">Hi Human, My Name is {petCardData.name}!</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{petCardData.description}</h6>
                 <p className="card-text">Breed: {petCardData.breeds}</p>
                 <p className="card-text">Age: {petCardData.age}</p>
@@ -47,12 +46,12 @@ const PetProfileDetailsCard = (props) => {
                                 role="status"
                                 aria-hidden="true"
                             /> :
-                            'Add To Favorate'
+                            'Add To Favorite'
                         }
                     </Button> :
                     <p>Added to Favorite</p>
                 }
-                <Button to="/" className="card-link">Add To Cart</Button>
+                {/* <Button to="/" className="card-link">Add To Cart</Button> */}
             </div>
         </div>
     )

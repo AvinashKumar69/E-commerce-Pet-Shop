@@ -32,7 +32,7 @@ function App(props) {
         <Route exact path='/petprofile/:id' element={<PetProfile />} />
         <Route exact path='/user/favorite' element={<Favorites />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import PetCards from "../components/PetCard";
 import SearchBar from "../components/SearchBar";
 import PetsData from "../DataHelpers/PetsData.json";
 
+
 // Responcibility-->
 // 1. it will display the pet details (by doing map function on pet card).
 // 2. it will get the Pets Data from the 'PetsData.json' 
@@ -17,6 +18,7 @@ import PetsData from "../DataHelpers/PetsData.json";
 // -SearchBar
 // -FeaturesHomeCard
 // -Footer
+
 
 const isFilterApplied = (filters) => {
     return Object.keys(filters).some((filterKey) => filters[filterKey].length > 0)
