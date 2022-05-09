@@ -1,7 +1,7 @@
 import { UPDATE_LOGGED_IN_STATUS, USER_SEARCHED_WORD, USER_FILTERED_CHECKED, SET_CURRENT_SELECTED_FILTER, SET_SELECTED_FILTER } from "../actions";
 
 
-const INITIAL_STATE = {
+const INITIAL_STATE = { 
     isLoggedIn: false,
     searchedWord: "",
     selectedFilters: {

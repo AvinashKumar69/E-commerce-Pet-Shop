@@ -32,7 +32,7 @@ export const signInWithGoogle = () => {
   .then(() => {
     signInWithPopup(auth, provider)
         .then((response) => {
-            console.log(response);
+            console.log(response); 
             store.dispatch(setCuurentUser(response.user))
             // store user token in session storage
             // sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
